@@ -1,4 +1,4 @@
-package com.sloydev.redbooth.view.activity;
+package com.sloydev.redbooth.view.activity.base;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;

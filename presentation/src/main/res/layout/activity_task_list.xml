@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-  android:id="@+id/tasks_list"
-  android:layout_width="match_parent"
-  android:paddingLeft="16dp"
-  android:paddingRight="16dp"
-  android:layout_height="match_parent">
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/tasks_list"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:paddingBottom="8dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="8dp">
 
 </android.support.v7.widget.RecyclerView>

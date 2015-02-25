@@ -9,6 +9,9 @@ import butterknife.ButterKnife;
 import com.sloydev.redbooth.model.TaskModel;
 import com.sloydev.redbooth.presenter.TaskListPresenter;
 import com.sloydev.redbooth.view.TaskListView;
+import com.sloydev.redbooth.view.activity.base.BaseToolbarActivity;
+import com.sloydev.redbooth.view.adapter.CardTaskListAdapter;
+
 import java.util.List;
 import javax.inject.Inject;
 

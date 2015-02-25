@@ -2,8 +2,10 @@ package com.sloydev.redbooth.presenter;
 
 import com.sloydev.redbooth.model.TaskModel;
 import com.sloydev.redbooth.view.TaskListView;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.inject.Inject;
 
 public class TaskListPresenter implements Presenter {
@@ -43,7 +45,7 @@ public class TaskListPresenter implements Presenter {
     private TaskModel mockTask() {
         TaskModel taskModel = new TaskModel();
         taskModel.setTitle("Title");
-        taskModel.setDescription("Description");
+        taskModel.setDescription("Description\nFor the task");
         return taskModel;
     }
 }

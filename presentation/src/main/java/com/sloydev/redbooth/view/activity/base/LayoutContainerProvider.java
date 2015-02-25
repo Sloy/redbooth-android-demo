@@ -1,4 +1,4 @@
-package com.sloydev.redbooth.view.activity;
+package com.sloydev.redbooth.view.activity.base;
 
 import android.app.Activity;
 import android.view.ViewGroup;

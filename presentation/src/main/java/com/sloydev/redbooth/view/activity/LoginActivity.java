@@ -5,11 +5,11 @@ import android.graphics.Bitmap;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import com.sloydev.redbooth.R;
 import com.sloydev.redbooth.presenter.LoginPresenter;
 import com.sloydev.redbooth.view.LoginView;
+import com.sloydev.redbooth.view.activity.base.BaseActivity;
 
 import javax.inject.Inject;
 

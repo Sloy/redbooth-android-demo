@@ -1,4 +1,4 @@
-package com.sloydev.redbooth.view.activity;
+package com.sloydev.redbooth.view.activity.base;
 
 import android.support.v7.widget.Toolbar;
 import android.view.ViewGroup;
