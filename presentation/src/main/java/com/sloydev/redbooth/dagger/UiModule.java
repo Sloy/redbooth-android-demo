@@ -1,7 +1,7 @@
 package com.sloydev.redbooth.dagger;
 
 import com.sloydev.redbooth.view.activity.LayoutContainerProvider;
-import com.sloydev.redbooth.view.activity.MainActivity;
+import com.sloydev.redbooth.view.activity.LoginActivity;
 
 import javax.inject.Singleton;
 
@@ -10,7 +10,7 @@ import dagger.Provides;
 
 @Module(
     injects = {
-            MainActivity.class,
+            LoginActivity.class,
     }
 )
 public class UiModule {

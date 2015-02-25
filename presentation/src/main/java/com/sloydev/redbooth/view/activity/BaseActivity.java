@@ -17,7 +17,7 @@ public abstract class BaseActivity extends ActionBarActivity {
         injectDependencies();
         inflateLayout();
         initializeViews();
-        created();
+        initializePresenter();
     }
 
     protected void inflateLayout() {
@@ -36,5 +36,5 @@ public abstract class BaseActivity extends ActionBarActivity {
 
     protected abstract void initializeViews();
 
-    protected abstract void created();
+    protected abstract void initializePresenter();
 }
