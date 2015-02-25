@@ -1,5 +1,6 @@
 package com.sloydev.redbooth.view.activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.webkit.WebView;
@@ -50,8 +51,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
     }
 
     @Override public void navigateToTaskList() {
-        //TODO launch activity Intent
-        Toast.makeText(this, "Should open activity", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, TaskListActivity.class));
         finish();
     }
 }
