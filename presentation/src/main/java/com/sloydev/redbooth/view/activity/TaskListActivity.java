@@ -1,5 +1,6 @@
 package com.sloydev.redbooth.view.activity;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import butterknife.InjectView;
@@ -40,5 +41,9 @@ public class TaskListActivity extends BaseToolbarActivity implements TaskListVie
 
     @Override public void renderTaskList(List<TaskModel> tasks) {
         adapter.setTasks(tasks);
+    }
+
+    @Override protected void setupActionBar(ActionBar actionBar) {
+        /* no-op */
     }
 }

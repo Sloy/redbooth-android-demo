@@ -1,5 +1,6 @@
 package com.sloydev.redbooth.view.activity.base;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.ViewGroup;
 
@@ -19,10 +20,13 @@ public abstract class BaseToolbarActivity extends BaseActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
+            setupActionBar(getSupportActionBar());
         } else {
             throw new IllegalStateException("Toolbar view (R.id.toolbar_actionbar) not found in BaseToolbarActivity");
         }
     }
+
+    protected abstract void setupActionBar(ActionBar actionBar);
 
     public Toolbar getToolbar() {
         return toolbar;
