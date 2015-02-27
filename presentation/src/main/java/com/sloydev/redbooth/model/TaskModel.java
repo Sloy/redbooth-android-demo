@@ -2,15 +2,17 @@ package com.sloydev.redbooth.model;
 
 public class TaskModel {
 
-    private String title;
+    private Integer id;
+    private String name;
     private String description;
+    private Long createdTimestamp;
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -19,5 +21,21 @@ public class TaskModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(Long createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

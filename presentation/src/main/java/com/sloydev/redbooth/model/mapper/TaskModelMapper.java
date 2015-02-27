@@ -15,7 +15,9 @@ public class TaskModelMapper {
 
     public TaskModel transform(Task task) {
         TaskModel taskModel = new TaskModel();
-        taskModel.setTitle(task.getTitle());
+        taskModel.setName(task.getName());
+        taskModel.setDescription(task.getDescription());
+        taskModel.setCreatedTimestamp(task.getCreated());
         return taskModel;
     }
 

@@ -32,7 +32,7 @@ public class CardTaskListAdapter extends RecyclerView.Adapter<CardTaskListAdapte
 
     @Override public void onBindViewHolder(TaskItemViewHolder holder, int position) {
         TaskModel taskModel = tasks.get(position);
-        holder.title.setText(taskModel.getTitle());
+        holder.title.setText(taskModel.getName());
         holder.description.setText(taskModel.getDescription());
     }
 

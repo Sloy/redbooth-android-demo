@@ -25,7 +25,8 @@ public class DummyTaskRepository implements TaskRepository {
 
     private Task dummyTask() {
         Task task = new Task();
-        task.setTitle("Title");
+        task.setName("This is the title");
+        task.setDescription("Description for the task.\nBut a long one, you know.");
         return task;
     }
 }
