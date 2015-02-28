@@ -30,4 +30,7 @@ dependencies {
 
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.okhttp:okhttp:2.2.0'
+
+    compile 'com.facebook.stetho:stetho:1.0.1'
+    compile 'com.facebook.stetho:stetho-okhttp:1.0.1'
 }

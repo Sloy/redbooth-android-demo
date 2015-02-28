@@ -23,6 +23,7 @@ public class ApiModule {
 
     @Provides @Singleton OkHttpClient provideOkHttpClient() {
         OkHttpClient client = new OkHttpClient();
+        client.networkInterceptors().add(new StethoInterceptor());
         return client;
     }
 

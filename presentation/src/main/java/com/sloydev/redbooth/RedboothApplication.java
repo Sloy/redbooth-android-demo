@@ -3,6 +3,8 @@ package com.sloydev.redbooth;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.stetho.Stetho;
+
 import dagger.ObjectGraph;
 
 public class RedboothApplication extends Application{
@@ -18,6 +20,11 @@ public class RedboothApplication extends Application{
     }
 
     private void setupDebuging() {
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                        .build());
     }
 
     private void buildObjectGraph() {
