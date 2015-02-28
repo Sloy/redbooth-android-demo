@@ -1,6 +1,7 @@
 package com.sloydev.redbooth.data.repository;
 
 import com.sloydev.redbooth.Task;
+import com.sloydev.redbooth.data.entity.TaskEntity;
 import com.sloydev.redbooth.data.entity.mapper.TaskEntityMapper;
 import com.sloydev.redbooth.data.repository.datasource.TaskDataSource;
 import com.sloydev.redbooth.repository.TaskRepository;
@@ -24,6 +25,7 @@ public class TaskDataRepository implements TaskRepository {
     }
 
     @Override public Task put(Task task) {
-        return task;
+        TaskEntity createdTask = taskDataSource.createTask(taskEntityMapper.transform(task));
+        return taskEntityMapper.transform(createdTask);
     }
 }

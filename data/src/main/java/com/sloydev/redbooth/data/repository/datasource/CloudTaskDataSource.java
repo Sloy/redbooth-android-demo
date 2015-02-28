@@ -18,4 +18,8 @@ public class CloudTaskDataSource implements TaskDataSource {
     @Override public List<TaskEntity> getTasks() {
         return redboothApi.getTasks();
     }
+
+    @Override public TaskEntity createTask(TaskEntity taskEntity) {
+        return redboothApi.createNewTask(taskEntity);
+    }
 }

@@ -7,4 +7,6 @@ import java.util.List;
 public interface TaskDataSource {
 
     public List<TaskEntity> getTasks();
+
+    TaskEntity createTask(TaskEntity taskEntity);
 }

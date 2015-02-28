@@ -7,6 +7,7 @@ public class TaskEntity {
     private String name;
     private Long created_at;
     private Long task_list_id;
+    private Long project_id;
     private String description;
     private Boolean urgent;
 
@@ -64,5 +65,13 @@ public class TaskEntity {
 
     public void setUrgent(Boolean urgent) {
         this.urgent = urgent;
+    }
+
+    public Long getProject_id() {
+        return project_id;
+    }
+
+    public void setProject_id(Long project_id) {
+        this.project_id = project_id;
     }
 }

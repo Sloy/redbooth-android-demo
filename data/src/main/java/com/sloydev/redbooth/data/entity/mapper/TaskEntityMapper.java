@@ -19,6 +19,8 @@ public class TaskEntityMapper {
         task.setDescription(entity.getDescription());
         task.setCreated(entity.getCreated_at());
         task.setUrgent(entity.isUrgent());
+        task.setProjectId(entity.getProject_id());
+        task.setTaskListId(entity.getTask_list_id());
         return task;
     }
 
@@ -28,5 +30,18 @@ public class TaskEntityMapper {
             tasks.add(transform(taskEntity));
         }
         return tasks;
+    }
+
+    public TaskEntity transform(Task task) {
+        TaskEntity taskEntity = new TaskEntity();
+        taskEntity.setId(task.getId());
+        taskEntity.setName(task.getName());
+        taskEntity.setDescription(task.getDescription());
+        taskEntity.setCreated_at(task.getCreated());
+        taskEntity.setTask_list_id(task.getTaskListId());
+        taskEntity.setProject_id(task.getProjectId());
+        taskEntity.setUrgent(task.isUrgent());
+        taskEntity.setType("Task");
+        return taskEntity;
     }
 }

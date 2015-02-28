@@ -7,6 +7,8 @@ public class Task {
     private String description;
     private Long created;
     private Boolean urgent;
+    private Long projectId;
+    private Long taskListId;
 
     public Long getId() {
         return id;
@@ -46,5 +48,21 @@ public class Task {
 
     public void setUrgent(Boolean urgent) {
         this.urgent = urgent;
+    }
+
+    public Long getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Long projectId) {
+        this.projectId = projectId;
+    }
+
+    public Long getTaskListId() {
+        return taskListId;
+    }
+
+    public void setTaskListId(Long taskListId) {
+        this.taskListId = taskListId;
     }
 }
