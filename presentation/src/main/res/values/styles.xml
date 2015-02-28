@@ -28,4 +28,9 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="TextAppearance.Redbooth.FloatLabel" parent="android:TextAppearance.Medium">
+        <item name="android:textColor">@color/float_label</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

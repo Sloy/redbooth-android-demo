@@ -1,6 +1,7 @@
 package com.sloydev.redbooth.dagger;
 
 import com.sloydev.redbooth.presenter.TaskListPresenter;
+import com.sloydev.redbooth.view.activity.TaskCreateActivity;
 import com.sloydev.redbooth.view.activity.base.LayoutContainerProvider;
 import com.sloydev.redbooth.view.activity.LoginActivity;
 
@@ -13,7 +14,7 @@ import dagger.Provides;
 
 @Module(
         injects = {
-                LoginActivity.class, TaskListActivity.class, TaskListPresenter.class,
+                LoginActivity.class, TaskListActivity.class, TaskListPresenter.class, TaskCreateActivity.class
         },
         complete = false
 )

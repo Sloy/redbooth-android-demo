@@ -1,12 +1,17 @@
 package com.sloydev.redbooth.view.activity;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import butterknife.InjectView;
+
+import com.melnykov.fab.FloatingActionButton;
 import com.sloydev.redbooth.R;
 
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 import com.sloydev.redbooth.model.TaskModel;
 import com.sloydev.redbooth.presenter.TaskListPresenter;
 import com.sloydev.redbooth.view.TaskListView;
@@ -20,7 +25,8 @@ public class TaskListActivity extends BaseToolbarActivity implements TaskListVie
 
     @Inject TaskListPresenter presenter;
 
-    @InjectView(R.id.tasks_list) RecyclerView recyclerView;
+    @InjectView(R.id.tasks_list) RecyclerView taskListView;
+    @InjectView(R.id.new_task) FloatingActionButton newTaskButton;
 
     private CardTaskListAdapter adapter;
 
@@ -30,9 +36,10 @@ public class TaskListActivity extends BaseToolbarActivity implements TaskListVie
 
     @Override protected void initializeViews() {
         ButterKnife.inject(this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        taskListView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CardTaskListAdapter();
-        recyclerView.setAdapter(adapter);
+        taskListView.setAdapter(adapter);
+        newTaskButton.attachToRecyclerView(taskListView);
     }
 
     @Override protected void initializePresenter() {
@@ -45,5 +52,10 @@ public class TaskListActivity extends BaseToolbarActivity implements TaskListVie
 
     @Override protected void setupActionBar(ActionBar actionBar) {
         /* no-op */
+    }
+
+    @OnClick(R.id.new_task)
+    public void onNewTaskClick() {
+        startActivity(new Intent(this, TaskCreateActivity.class));
     }
 }
