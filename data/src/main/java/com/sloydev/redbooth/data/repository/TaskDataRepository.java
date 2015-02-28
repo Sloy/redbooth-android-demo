@@ -22,4 +22,8 @@ public class TaskDataRepository implements TaskRepository {
     @Override public List<Task> getAll() {
         return taskEntityMapper.transform(taskDataSource.getTasks());
     }
+
+    @Override public Task put(Task task) {
+        return task;
+    }
 }
