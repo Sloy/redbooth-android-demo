@@ -18,6 +18,7 @@ public class TaskModelMapper {
         taskModel.setName(task.getName());
         taskModel.setDescription(task.getDescription());
         taskModel.setCreatedTimestamp(task.getCreated());
+        taskModel.setUrgent(task.isUrgent());
         return taskModel;
     }
 

@@ -18,6 +18,7 @@ public class TaskEntityMapper {
         task.setName(entity.getName());
         task.setDescription(entity.getDescription());
         task.setCreated(entity.getCreated_at());
+        task.setUrgent(entity.isUrgent());
         return task;
     }
 

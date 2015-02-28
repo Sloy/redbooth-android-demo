@@ -5,15 +5,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+
+import com.jmpergar.awesometext.AwesomeTextHandler;
 import com.sloydev.redbooth.R;
 import com.sloydev.redbooth.model.TaskModel;
+import com.sloydev.redbooth.view.component.UrgentSpanRenderer;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class CardTaskListAdapter extends RecyclerView.Adapter<CardTaskListAdapter.TaskItemViewHolder> {
 
+    private static final String URGENT_PATTERN = "(urgent)";
     private List<TaskModel> tasks;
 
     public CardTaskListAdapter() {
@@ -32,8 +38,14 @@ public class CardTaskListAdapter extends RecyclerView.Adapter<CardTaskListAdapte
 
     @Override public void onBindViewHolder(TaskItemViewHolder holder, int position) {
         TaskModel taskModel = tasks.get(position);
-        holder.title.setText(taskModel.getName());
         holder.description.setText(taskModel.getDescription());
+        String taskName = taskModel.getName();
+        if (taskModel.isUrgent()) {
+            holder.title.setText(taskName + " urgent");
+            new AwesomeTextHandler().addViewSpanRenderer(URGENT_PATTERN, new UrgentSpanRenderer()).setView(holder.title);
+        } else {
+            holder.title.setText(taskName);
+        }
     }
 
     @Override public int getItemCount() {

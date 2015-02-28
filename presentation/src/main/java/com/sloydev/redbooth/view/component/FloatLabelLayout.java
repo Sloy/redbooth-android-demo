@@ -1,4 +1,4 @@
-package com.sloydev.redbooth.view.widget;/*
+package com.sloydev.redbooth.view.component;/*
  * Copyright 2014 Chris Banes
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

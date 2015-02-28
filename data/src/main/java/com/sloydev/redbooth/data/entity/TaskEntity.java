@@ -8,6 +8,7 @@ public class TaskEntity {
     private Long created_at;
     private Long task_list_id;
     private String description;
+    private Boolean urgent;
 
     public String getType() {
         return type;
@@ -55,5 +56,13 @@ public class TaskEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Boolean isUrgent() {
+        return urgent;
+    }
+
+    public void setUrgent(Boolean urgent) {
+        this.urgent = urgent;
     }
 }

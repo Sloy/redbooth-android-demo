@@ -6,6 +6,7 @@ public class TaskModel {
     private String name;
     private String description;
     private Long createdTimestamp;
+    private Boolean urgent;
 
     public String getName() {
         return name;
@@ -37,5 +38,13 @@ public class TaskModel {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Boolean isUrgent() {
+        return urgent;
+    }
+
+    public void setUrgent(Boolean urgent) {
+        this.urgent = urgent;
     }
 }

@@ -6,6 +6,7 @@ public class Task {
     private String name;
     private String description;
     private Long created;
+    private Boolean urgent;
 
     public Long getId() {
         return id;
@@ -37,5 +38,13 @@ public class Task {
 
     public void setCreated(Long created) {
         this.created = created;
+    }
+
+    public Boolean isUrgent() {
+        return urgent;
+    }
+
+    public void setUrgent(Boolean urgent) {
+        this.urgent = urgent;
     }
 }
