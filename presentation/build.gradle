@@ -38,4 +38,7 @@ dependencies {
     compile 'com.melnykov:floatingactionbutton:1.2.0'
 
     compile 'com.jmpergar:AwesomeText:1.0.0'
+
+    testCompile 'junit:junit:4.12'
+    testCompile "org.mockito:mockito-core:1.9.5"
 }
