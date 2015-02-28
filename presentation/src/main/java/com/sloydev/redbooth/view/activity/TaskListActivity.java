@@ -23,6 +23,8 @@ import javax.inject.Inject;
 
 public class TaskListActivity extends BaseToolbarActivity implements TaskListView {
 
+    private static final int REQUEST_CREATE_TASK = 1;
+
     @Inject TaskListPresenter presenter;
 
     @InjectView(R.id.tasks_list) RecyclerView taskListView;
@@ -46,16 +48,25 @@ public class TaskListActivity extends BaseToolbarActivity implements TaskListVie
         presenter.initialize(this);
     }
 
-    @Override public void renderTaskList(List<TaskModel> tasks) {
-        adapter.setTasks(tasks);
-    }
-
     @Override protected void setupActionBar(ActionBar actionBar) {
         /* no-op */
     }
 
     @OnClick(R.id.new_task)
     public void onNewTaskClick() {
-        startActivity(new Intent(this, TaskCreateActivity.class));
+        startActivityForResult(new Intent(this, TaskCreateActivity.class), REQUEST_CREATE_TASK);
     }
+
+    @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CREATE_TASK && resultCode == RESULT_OK) {
+            presenter.taskCreated();
+        }
+    }
+
+    @Override public void renderTaskList(List<TaskModel> tasks) {
+        adapter.setTasks(tasks);
+    }
+
+
 }

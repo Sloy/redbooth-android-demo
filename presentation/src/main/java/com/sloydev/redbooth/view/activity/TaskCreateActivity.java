@@ -64,6 +64,7 @@ public class TaskCreateActivity extends BaseToolbarActivity implements TaskCreat
 
     //region View methods
     @Override public void close() {
+        setResult(RESULT_OK);
         finish();
     }
 

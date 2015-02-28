@@ -36,8 +36,11 @@ public class TaskListPresenter implements Presenter {
         });
     }
 
+    public void taskCreated() {
+        this.loadTasks();
+    }
+
     private void onTaskListLoaded(List<TaskModel> tasks) {
         taskListView.renderTaskList(tasks);
     }
-
 }
