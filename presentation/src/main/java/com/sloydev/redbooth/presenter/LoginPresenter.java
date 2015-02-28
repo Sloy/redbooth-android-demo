@@ -27,7 +27,11 @@ public class LoginPresenter implements Presenter {
 
     public void initialize(LoginView loginView) {
         this.loginView = loginView;
-        this.showViewLoginForm();
+        if (!token.isSet()) {
+            this.showViewLoginForm();
+        } else {
+            this.closeViewLoginForm();
+        }
     }
 
     public void onStartLoadingOAuthPage(String url) {
