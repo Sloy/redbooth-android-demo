@@ -12,6 +12,7 @@ import dagger.Provides;
 @Module(
         includes = {
                 RepositoryModule.class,
+                PreferenceModule.class,
         },
         injects = {
                 GetTaskListInteractor.class,

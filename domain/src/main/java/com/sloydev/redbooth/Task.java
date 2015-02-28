@@ -2,16 +2,16 @@ package com.sloydev.redbooth;
 
 public class Task {
 
-    private Integer id;
+    private Long id;
     private String name;
     private String description;
     private Long created;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

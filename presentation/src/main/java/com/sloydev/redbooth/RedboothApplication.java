@@ -13,6 +13,11 @@ public class RedboothApplication extends Application{
     @Override public void onCreate() {
         super.onCreate();
         buildObjectGraph();
+
+        setupDebuging();
+    }
+
+    private void setupDebuging() {
     }
 
     private void buildObjectGraph() {

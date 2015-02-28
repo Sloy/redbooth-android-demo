@@ -1,9 +1,12 @@
 package com.sloydev.redbooth.dagger;
 
+import android.app.Application;
+
 import com.sloydev.redbooth.RedboothApplication;
 import com.sloydev.redbooth.data.dagger.DataModule;
 
 import dagger.Module;
+import dagger.Provides;
 
 @Module(
         includes = {
@@ -14,7 +17,14 @@ import dagger.Module;
 )
 public class RedboothModule {
 
-    public RedboothModule(RedboothApplication app) {
+    private RedboothApplication app;
 
+    public RedboothModule(RedboothApplication app) {
+        this.app = app;
     }
+
+    @Provides Application provideApplication() {
+        return app;
+    }
+
 }

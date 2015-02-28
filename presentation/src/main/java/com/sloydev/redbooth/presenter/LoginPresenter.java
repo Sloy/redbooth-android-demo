@@ -3,6 +3,8 @@ package com.sloydev.redbooth.presenter;
 import android.net.Uri;
 import android.util.Log;
 
+import com.sloydev.redbooth.data.preferences.StringPreference;
+import com.sloydev.redbooth.data.preferences.Token;
 import com.sloydev.redbooth.view.LoginView;
 
 import javax.inject.Inject;
@@ -15,9 +17,12 @@ public class LoginPresenter implements Presenter {
 
     private static final String ACCESS_TOKEN_PARAMETER = "access_token";
 
+    private final StringPreference token;
+
     private LoginView loginView;
 
-    @Inject public LoginPresenter() {
+    @Inject public LoginPresenter(@Token StringPreference token) {
+        this.token = token;
     }
 
     public void initialize(LoginView loginView) {
@@ -43,7 +48,7 @@ public class LoginPresenter implements Presenter {
     }
 
     private void storeAccessToken(String accessToken) {
-        //TODO store token in preferences
+        token.set(accessToken);
         Log.d("Access Token", accessToken);
     }
 
