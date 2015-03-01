@@ -19,8 +19,10 @@ This is a simple project demonstrating the use of Redbooth's API.
 - Login system and flow: It's just implemented in the most basic way in order to work.
 - Task detail view.
 - Edit existing task.
-- Enable more Task info (viewing and creating).
-- Add more tests.
+- Add more Task info (viewing and creating).
+- Error handling: Have different types of exceptions to catch, use a ErrorMessageFactory to give the user proper feedback, retry system when suitable.
+- Better empty views.
+- Add more tests (unit and instrumentation).
 
 ## Libraries used
 - [Appcompat v7](http://android-developers.blogspot.com.es/2014/10/appcompat-v21-material-design-for-pre.html)
