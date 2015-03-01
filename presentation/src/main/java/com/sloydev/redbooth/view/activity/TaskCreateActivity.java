@@ -3,6 +3,7 @@ package com.sloydev.redbooth.view.activity;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ public class TaskCreateActivity extends BaseToolbarActivity implements TaskCreat
 
     @InjectView(R.id.task_title) EditText titleText;
     @InjectView(R.id.task_description) EditText descriptionText;
+    @InjectView(R.id.task_urgent) CheckBox urgentCheckbox;
 
     @Inject TaskCreatePresenter presenter;
 
@@ -74,6 +76,10 @@ public class TaskCreateActivity extends BaseToolbarActivity implements TaskCreat
 
     @Override public String getTaskDescription() {
         return descriptionText.getText().toString();
+    }
+
+    @Override public Boolean isTaskUrgent() {
+        return urgentCheckbox.isChecked();
     }
     //endregion
 }

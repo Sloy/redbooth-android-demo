@@ -23,7 +23,8 @@ public class TaskCreatePresenter implements Presenter {
     public void done() {
         String title = filterText(taskCreateView.getTaskTitle());
         String description = filterText(taskCreateView.getTaskDescription());
-        createTaskInteractor.createTask(title, description, new Interactor.Callback<Task>() {
+        Boolean urgent = taskCreateView.isTaskUrgent();
+        createTaskInteractor.createTask(title, description, urgent, new Interactor.Callback<Task>() {
             @Override public void onLoaded(Task task) {
                 taskCreated();
             }

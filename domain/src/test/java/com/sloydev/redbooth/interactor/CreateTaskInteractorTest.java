@@ -12,7 +12,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +27,7 @@ public class CreateTaskInteractorTest {
 
     private static final String NAME_STUB = "name";
     private static final String DESCRIPTION_STUB = "description";
+    private static final Boolean URGENT_STUB = false;
     private static final Long TASK_LIST_1 = 1L;
     private static final Long TASK_LIST_2 = 2L;
     private static final Long PROJECT_ID = 3L;
@@ -50,7 +50,7 @@ public class CreateTaskInteractorTest {
     public void shouldGetTaskListsBeforeCreating() throws Exception {
         InOrder order = inOrder(taskRepository, taskListRepository);
 
-        interactor.createTask(NAME_STUB, DESCRIPTION_STUB, callback);
+        interactor.createTask(NAME_STUB, DESCRIPTION_STUB, URGENT_STUB, callback);
 
         order.verify(taskListRepository).getAll();
         order.verify(taskRepository).put(any(Task.class));
@@ -60,7 +60,7 @@ public class CreateTaskInteractorTest {
     public void shouldCreateTaskWithProjectIdAndListIdFromFirstTaskList() throws Exception {
         when(taskListRepository.getAll()).thenReturn(taskLists());
 
-        interactor.createTask(NAME_STUB, DESCRIPTION_STUB, callback);
+        interactor.createTask(NAME_STUB, DESCRIPTION_STUB, URGENT_STUB, callback);
         ArgumentCaptor<Task> taskArgumentCaptor = ArgumentCaptor.forClass(Task.class);
         verify(taskRepository, times(1)).put(taskArgumentCaptor.capture());
         Task createdTask = taskArgumentCaptor.getValue();

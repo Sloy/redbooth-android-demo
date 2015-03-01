@@ -6,4 +6,6 @@ public interface TaskCreateView {
     String getTaskTitle();
 
     String getTaskDescription();
+
+    Boolean isTaskUrgent();
 }

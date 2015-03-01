@@ -17,6 +17,7 @@ public class CreateTaskInteractor implements Interactor {
 
     private String name;
     private String description;
+    private Boolean urgent;
     private Callback<Task> callback;
 
     @Inject public CreateTaskInteractor(InteractorHandler interactorHandler, TaskRepository taskRepository, TaskListRepository taskListRepository) {
@@ -25,9 +26,10 @@ public class CreateTaskInteractor implements Interactor {
         this.taskListRepository = taskListRepository;
     }
 
-    public void createTask(String name, String description, Callback<Task> callback) {
+    public void createTask(String name, String description, Boolean urgent, Callback<Task> callback) {
         this.name = name;
         this.description = description;
+        this.urgent = urgent;
         this.callback = callback;
         interactorHandler.execute(this);
     }
@@ -52,6 +54,7 @@ public class CreateTaskInteractor implements Interactor {
             TaskList taskList = taskLists.get(0);
             newTask.setProjectId(taskList.getProjectId());
             newTask.setTaskListId(taskList.getId());
+            newTask.setUrgent(urgent);
         } else {
             //TODO throw exception
         }
