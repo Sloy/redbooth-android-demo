@@ -1,4 +1,5 @@
 # Redbooth demo for Android
+[![Build Status](https://travis-ci.org/Sloy/redbooth-android-demo.svg?branch=develop)](https://travis-ci.org/Sloy/redbooth-android-demo)
 
 This is a simple project demonstrating the use of Redbooth's API.
 
@@ -17,3 +18,18 @@ This is a simple project demonstrating the use of Redbooth's API.
 - Edit existing task.
 - Enable more Task info (viewing and creating).
 - Add more tests.
+
+## Libraries used
+- [Appcompat v7](http://android-developers.blogspot.com.es/2014/10/appcompat-v21-material-design-for-pre.html)
+- [CardView](https://developer.android.com/training/material/lists-cards.html)
+- [RecyclerView](https://developer.android.com/training/material/lists-cards.html)
+- [Butterknife](http://jakewharton.github.io/butterknife/)
+- [Dagger](http://square.github.io/dagger/)
+- [FloatingActionButton](https://github.com/makovkastar/FloatingActionButton)
+- [AwesomeText](https://github.com/JMPergar/AwesomeText/)
+- [Retrofit](http://square.github.io/retrofit/)
+- [OkHttp](http://square.github.io/okhttp/)
+- [Stetho](https://github.com/facebook/stetho)
+- [JUnit 4](http://junit.org/)
+- [Mockito](https://github.com/mockito/mockito)
+- [AssertJ](http://joel-costigliola.github.io/assertj/)
