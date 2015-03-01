@@ -3,6 +3,9 @@
 
 This is a simple project demonstrating the use of Redbooth's API.
 
+![screnshot1](./art/screenshot1.png)
+![screnshot2](./art/screenshot2.png)
+
 ### Features
 - Clean Arquitecture: Separate modules for Presentation, Domain and Data.
 - MVP: Use of presenters inside the presentation layer.
