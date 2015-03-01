@@ -1,6 +1,7 @@
 package com.sloydev.redbooth.presenter;
 
 import com.sloydev.redbooth.Task;
+import com.sloydev.redbooth.exception.RedboothException;
 import com.sloydev.redbooth.interactor.CreateTaskInteractor;
 import com.sloydev.redbooth.interactor.Interactor;
 import com.sloydev.redbooth.view.TaskCreateView;
@@ -28,8 +29,16 @@ public class TaskCreatePresenter implements Presenter {
             @Override public void onLoaded(Task task) {
                 taskCreated();
             }
+        }, new Interactor.ErrorCallback() {
+            @Override public void onError(RedboothException error) {
+                showViewError(error);
+            }
         });
 
+    }
+
+    private void showViewError(RedboothException error) {
+        taskCreateView.showError("Unknown error");
     }
 
     private String filterText(String input) {

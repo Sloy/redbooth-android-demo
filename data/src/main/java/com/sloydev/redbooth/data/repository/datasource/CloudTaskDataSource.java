@@ -2,6 +2,7 @@ package com.sloydev.redbooth.data.repository.datasource;
 
 import com.sloydev.redbooth.data.api.RedboothApi;
 import com.sloydev.redbooth.data.entity.TaskEntity;
+import com.sloydev.redbooth.exception.RedboothException;
 
 import java.util.List;
 
@@ -20,6 +21,10 @@ public class CloudTaskDataSource implements TaskDataSource {
     }
 
     @Override public TaskEntity createTask(TaskEntity taskEntity) {
-        return redboothApi.createNewTask(taskEntity);
+        try {
+            return redboothApi.createNewTask(taskEntity);
+        } catch (Exception e) {
+            throw new RedboothException(e);
+        }
     }
 }

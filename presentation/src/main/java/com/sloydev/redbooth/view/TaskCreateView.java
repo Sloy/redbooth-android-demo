@@ -8,4 +8,6 @@ public interface TaskCreateView {
     String getTaskDescription();
 
     Boolean isTaskUrgent();
+
+    void showError(String errorMessage);
 }

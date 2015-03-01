@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sloydev.redbooth.R;
 import com.sloydev.redbooth.presenter.TaskCreatePresenter;
@@ -80,6 +81,10 @@ public class TaskCreateActivity extends BaseToolbarActivity implements TaskCreat
 
     @Override public Boolean isTaskUrgent() {
         return urgentCheckbox.isChecked();
+    }
+
+    @Override public void showError(String errorMessage) {
+        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
     }
     //endregion
 }

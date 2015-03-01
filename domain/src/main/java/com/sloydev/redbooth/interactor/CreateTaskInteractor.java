@@ -2,6 +2,7 @@ package com.sloydev.redbooth.interactor;
 
 import com.sloydev.redbooth.Task;
 import com.sloydev.redbooth.TaskList;
+import com.sloydev.redbooth.exception.RedboothException;
 import com.sloydev.redbooth.repository.TaskListRepository;
 import com.sloydev.redbooth.repository.TaskRepository;
 
@@ -19,6 +20,7 @@ public class CreateTaskInteractor implements Interactor {
     private String description;
     private Boolean urgent;
     private Callback<Task> callback;
+    private ErrorCallback errorCallback;
 
     @Inject public CreateTaskInteractor(InteractorHandler interactorHandler, TaskRepository taskRepository, TaskListRepository taskListRepository) {
         this.interactorHandler = interactorHandler;
@@ -26,18 +28,23 @@ public class CreateTaskInteractor implements Interactor {
         this.taskListRepository = taskListRepository;
     }
 
-    public void createTask(String name, String description, Boolean urgent, Callback<Task> callback) {
+    public void createTask(String name, String description, Boolean urgent, Callback<Task> callback, ErrorCallback errorCallback) {
         this.name = name;
         this.description = description;
         this.urgent = urgent;
         this.callback = callback;
+        this.errorCallback = errorCallback;
         interactorHandler.execute(this);
     }
 
     @Override public void run() {
-        Task newTask = taskFromParameters();
-        setupProjectAndList(newTask);
-        saveNewTaskAndNotify(newTask);
+        try {
+            Task newTask = taskFromParameters();
+            setupProjectAndList(newTask);
+            saveNewTaskAndNotify(newTask);
+        } catch (RedboothException e) {
+            notifyError(e);
+        }
     }
 
     private Task taskFromParameters() {
@@ -56,7 +63,7 @@ public class CreateTaskInteractor implements Interactor {
             newTask.setTaskListId(taskList.getId());
             newTask.setUrgent(urgent);
         } else {
-            //TODO throw exception
+            throw new RedboothException("No task list found");
         }
     }
 
@@ -69,6 +76,14 @@ public class CreateTaskInteractor implements Interactor {
         interactorHandler.postResponse(new Runnable() {
             @Override public void run() {
                 callback.onLoaded(createdTask);
+            }
+        });
+    }
+
+    private void notifyError(final RedboothException error) {
+        interactorHandler.postResponse(new Runnable() {
+            @Override public void run() {
+                errorCallback.onError(error);
             }
         });
     }

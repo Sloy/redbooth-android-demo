@@ -3,6 +3,7 @@ package com.sloydev.redbooth.interactor;
 import com.sloydev.redbooth.Task;
 import com.sloydev.redbooth.TaskList;
 import com.sloydev.redbooth.TestInteractorHandler;
+import com.sloydev.redbooth.exception.RedboothException;
 import com.sloydev.redbooth.repository.TaskListRepository;
 import com.sloydev.redbooth.repository.TaskRepository;
 
@@ -19,6 +20,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -35,22 +37,23 @@ public class CreateTaskInteractorTest {
     @Mock TaskRepository taskRepository;
     @Mock TaskListRepository taskListRepository;
     @Mock Interactor.Callback<Task> callback;
-    private InteractorHandler interactorHandler;
+    @Mock Interactor.ErrorCallback errorCallback;
 
     private CreateTaskInteractor interactor;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        interactorHandler = new TestInteractorHandler();
+        InteractorHandler interactorHandler = new TestInteractorHandler();
         interactor = new CreateTaskInteractor(interactorHandler, taskRepository, taskListRepository);
     }
 
     @Test
     public void shouldGetTaskListsBeforeCreating() throws Exception {
+        when(taskListRepository.getAll()).thenReturn(taskLists());
         InOrder order = inOrder(taskRepository, taskListRepository);
 
-        interactor.createTask(NAME_STUB, DESCRIPTION_STUB, URGENT_STUB, callback);
+        interactor.createTask(NAME_STUB, DESCRIPTION_STUB, URGENT_STUB, callback, errorCallback);
 
         order.verify(taskListRepository).getAll();
         order.verify(taskRepository).put(any(Task.class));
@@ -60,7 +63,7 @@ public class CreateTaskInteractorTest {
     public void shouldCreateTaskWithProjectIdAndListIdFromFirstTaskList() throws Exception {
         when(taskListRepository.getAll()).thenReturn(taskLists());
 
-        interactor.createTask(NAME_STUB, DESCRIPTION_STUB, URGENT_STUB, callback);
+        interactor.createTask(NAME_STUB, DESCRIPTION_STUB, URGENT_STUB, callback, errorCallback);
         ArgumentCaptor<Task> taskArgumentCaptor = ArgumentCaptor.forClass(Task.class);
         verify(taskRepository, times(1)).put(taskArgumentCaptor.capture());
         Task createdTask = taskArgumentCaptor.getValue();
@@ -69,6 +72,31 @@ public class CreateTaskInteractorTest {
         assertThat(createdTask.getTaskListId()).isEqualTo(TASK_LIST_1);
     }
 
+    @Test
+    public void shouldNotifyErrorToCallbackWhenTaskRepositoryFails() throws Exception {
+        when(taskRepository.put(any(Task.class))).thenThrow(new RedboothException("Error"));
+
+        interactor.createTask(NAME_STUB, DESCRIPTION_STUB, URGENT_STUB, callback, errorCallback);
+        verify(errorCallback, times(1)).onError(any(RedboothException.class));
+    }
+
+    @Test
+    public void shouldNotNotifyTaskCreatedWhenTaskRepositoryFails() throws Exception {
+        when(taskRepository.put(any(Task.class))).thenThrow(new RedboothException("Error"));
+
+        interactor.createTask(NAME_STUB, DESCRIPTION_STUB, URGENT_STUB, callback, errorCallback);
+        verify(callback, never()).onLoaded(any(Task.class));
+    }
+
+    @Test
+    public void shouldNotifyErrorToCallbackWhenTaskListEmpty() throws Exception {
+        when(taskListRepository.getAll()).thenReturn(new ArrayList<TaskList>());
+
+        interactor.createTask(NAME_STUB, DESCRIPTION_STUB, URGENT_STUB, callback, errorCallback);
+
+        verify(errorCallback, times(1)).onError(any(RedboothException.class));
+        verify(callback, never()).onLoaded(any(Task.class));
+    }
 
     private List<TaskList> taskLists() {
         List<TaskList> taskLists = new ArrayList<>();
