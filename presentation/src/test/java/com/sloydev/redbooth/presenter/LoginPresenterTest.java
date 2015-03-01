@@ -10,7 +10,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -32,13 +31,13 @@ public class LoginPresenterTest {
     }
 
     @Test
-    public void shouldNotShowLoginIfTokenExists() throws Exception {
+    public void shouldShowLoginIfTokenExists() throws Exception {
         when(token.isSet()).thenReturn(true);
         when(token.get()).thenReturn(TOKEN_STUB);
 
         presenter.initialize(loginView);
 
-        verify(loginView, never()).showOAuthLoginForm(anyString());
+        verify(loginView, times(1)).showOAuthLoginForm(anyString());
     }
 
 
